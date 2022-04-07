@@ -7,6 +7,14 @@ pipeline {
                 git 'https://github.com/sefbeck/NewProject4.git'
             }
         }
+       
+        stage('SonarQube analysis') {
+            steps {
+              withSonarQubeEnv( 'sonar') {
+                sh 'mvn -f SampleWebApp/pom.xml clean package sonar:sonar'
+               }
+            }
+        }
         stage('Test') {
             steps {
                 sh 'cd SampleWebApp && mvn test'
