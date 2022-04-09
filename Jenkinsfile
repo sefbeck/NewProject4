@@ -29,7 +29,7 @@ pipeline {
         }
         stage('Build with Maven') {
             steps {
-                sh 'cd SampleWebApp && mvn package'
+                sh 'cd SampleWebApp && mvn clean package -Dbuild.number=${BUILD_NUMBER}'
             }
         }
         
